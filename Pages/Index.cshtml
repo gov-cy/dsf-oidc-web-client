@@ -1,0 +1,79 @@
+﻿@page
+@model IndexModel
+
+@using Microsoft.AspNetCore.Authentication
+
+<h2>Claims</h2>
+
+@*<dl>
+    @foreach (var claim in User.Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>
+
+<h2>Properties</h2>
+
+<dl>
+    @foreach (var prop in (await HttpContext.AuthenticateAsync()).Properties.Items)
+    {
+        <dt>@prop.Key</dt>
+        <dd>@prop.Value</dd>
+    }
+</dl>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Claim Type</th>
+            <th scope="col">Claim Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in User.Claims)
+        {
+            <tr>
+                <td>
+                    @claim.Type
+                </td>
+                <td>
+                    @claim.Value
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+<h2>Properties</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Property Key</th>
+            <th scope="col">Property Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prop in (await HttpContext.AuthenticateAsync()).Properties.Items)
+        {
+
+            <tr>
+                <td>
+                    @prop.Key
+                </td>
+                <td>
+                    @if (prop.Key.Contains(".Token.access_token") || prop.Key.Contains(".Token.id_token"))
+                    {
+                        <textarea rows="3" cols="100">@prop.Value</textarea>
+                    }
+                    else
+                    {
+                        @prop.Value
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
