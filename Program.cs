@@ -31,7 +31,11 @@ builder.Services.AddAuthentication(options =>
     {
         options.Authority = builder.Configuration["IdentityServer:Authority"];
 
-        options.ClientId = "web";
+        //localhost
+        //options.ClientId = "web";
+
+        //dsf-oidc.test.service.gov.cy
+        options.ClientId = "dsf.oidc.client.test";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
         options.ResponseMode = "query";
