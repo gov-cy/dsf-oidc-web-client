@@ -111,18 +111,4 @@ jobs:
           #   NUGET_ACCESSTOKEN=${{ secrets.ACCESS_TOKEN }}
           #   GITHUB_ACTOR=${{ github.actor }}      
 
-  #aks_deploy:
-    #needs: build
-    #runs-on: self-hosted
-    
-    #steps:
-      ##AKS Deployment using kubeconfig method.
-      #- name: Kubernetes set context
-      #  uses: Azure/k8s-set-context@v1.1
-      #  with:
-      #    method: kubeconfig
-      #    kubeconfig: ${{ secrets.AKS_STAGING_CONFIG }}
 
-      #- name: Run the kubectl script
-      #  run: |
-      #    kubectl rollout restart deployment dsf-nsf-service --namespace=default
